@@ -38,9 +38,9 @@ class InitialView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          "Record voice notes or share audio\nfiles from other apps.",
+          "Record voice notes or share audio\nfiles from WhatApp.",
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16, color: Colors.grey.shade600, height: 1.5),
+          style: TextStyle(fontSize: 20, color: Colors.grey.shade600, height: 1.5),
         ),
         
         const SizedBox(height: 50),
