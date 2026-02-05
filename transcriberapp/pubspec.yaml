@@ -1,0 +1,55 @@
+name: transcriberapp
+description: "A serverlass AI Audio transcriber."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # --- NEW: Serverless AI & Storage ---
+  google_generative_ai: ^0.4.0   # The Gemini AI Engine
+  flutter_secure_storage: ^9.0.0 # Secure Vault for API Key
+  shared_preferences: ^2.2.2     # To track "First Time" launch
+  url_launcher: ^6.2.5           # To open the "Get API Key" link
+  
+  
+  receive_sharing_intent:
+    git:
+      url: https://github.com/KasemJaffer/receive_sharing_intent
+      ref: 2cea396843cd3ab1b5ec4334be4233864637874e
+  permission_handler: ^11.0.1
+  path_provider: ^2.1.5
+  record: ^6.1.2
+  sqflite: ^2.3.3
+  path: ^1.9.0
+  http: ^1.5.0
+  mime: ^2.0.0
+  http_parser: ^4.1.2
+  flutter_dotenv: ^6.0.0
+  rename: ^3.1.0
+  intl: ^0.20.1
+  audioplayers: ^6.5.1
+  share_plus: ^12.0.1
+  video_player: ^2.10.1
+  chewie: ^1.13.0
+  google_fonts: ^8.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/app_icon.png
+    - .env
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
