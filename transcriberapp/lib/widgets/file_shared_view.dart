@@ -31,7 +31,7 @@ class FileSharedView extends StatelessWidget {
         ElevatedButton.icon(
           onPressed: onStartTranscription,
           icon: const Icon(Icons.transcribe),
-          label: const Text("Transcribe Now"),
+          label: const Text("Start Transcription"),
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blueAccent,
             foregroundColor: Colors.white,

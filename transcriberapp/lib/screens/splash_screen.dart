@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 120,
               width: 120,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(50),
                 image: const DecorationImage(
                   image: AssetImage('assets/icon/app_icon.png'), // <--- FIXED
                   fit: BoxFit.contain,
@@ -66,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
             
             // --- App Name ---
             const Text(
-              "Transcriber",
+              "Audio Transcriber",
               style: TextStyle(
                 fontSize: 32, 
                 fontWeight: FontWeight.bold, 

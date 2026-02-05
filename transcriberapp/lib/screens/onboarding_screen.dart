@@ -72,12 +72,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               // --- Header Logo ---
               const SizedBox(height: 20),
               Center(
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/icon/app_icon.png'),
+                child: ClipOval(
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    color: Colors.white,
+                    child: Image.asset(
+                      'assets/icon/app_icon.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -85,26 +86,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               const SizedBox(height: 24),
               const Text(
-                "Welcome to Transcriber",
+                "Welcome to Audio Transcriber",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 26, 
-                  fontWeight: FontWeight.bold, 
-                  color: Colors.black 
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 8),
+              Text(
+                "Your smart solution for WhatsApp Voice Transcription",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 5),
               Text(
                 "Get a free Gemini API Key to start.",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
 
               // --- YouTube Tutorial Button ---
               OutlinedButton.icon(
-                onPressed: () => _launchUrl("https://youtu.be/RVGbLSVFtIk?si=Fwf6JTo7b6SmVg-P"),
+                onPressed: () => _launchUrl("https://youtu.be/soB9zHm_o1s?si=fF5gVN97Vf0bZWaS"),
                 icon: const Icon(Icons.play_circle_fill, color: Colors.red),
                 label: const Text("Watch Tutorial on YouTube"),
                 style: OutlinedButton.styleFrom(
