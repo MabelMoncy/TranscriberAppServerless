@@ -44,7 +44,7 @@ class InitialView extends StatelessWidget {
             children: [
               TextSpan(
                 text: "share audio files from 'WhatApp'",
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
               ),
               TextSpan(text: "."),
             ],
