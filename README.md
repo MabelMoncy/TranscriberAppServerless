@@ -49,8 +49,8 @@ This app represents more than technology; it represents the power of using our s
 ```
 ┌─────────────────────────────────────────┐
 │         Flutter Mobile App              │
-│  (Audio Recording + UI + History) 
-│        Client Side Api call
+│  (Audio Recording + UI + History)       |
+│        Client Side Api call             |
 └─────────────┬───────────────────────────┘
               │ Serverless
               ▼
