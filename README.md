@@ -31,6 +31,7 @@ This app represents more than technology; it represents the power of using our s
 - 🤖 **AI-Powered Transcription** - Powered by Google Gemini 2.5 with triple-fallback system
 - 💾 **History Management** - Save, view, and manage all your transcriptions
 - 🗑️ **Smart Garbage Detection** - Automatically filters out accidental or empty recordings
+- 🔑**Bring Your Own Key" (BYOK) model**
 - 🔒 **Secure API** - Protected endpoints with secret-based authentication
 
 ### 🛡️ Advanced Features
