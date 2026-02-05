@@ -7,7 +7,7 @@
 
 **A powerful, intelligent audio transcription application built with love for accessibility** 💙
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Deployment](#-deployment) • [License](#-license)
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [License](#-license)
 
 </div>
 
@@ -44,12 +44,6 @@ This app represents more than technology; it represents the power of using our s
 - **Material Design 3** - Modern, beautiful UI with accessibility in mind
 
 ---
-
-## 📸 Demo
-![TranscriberAppImage](https://github.com/user-attachments/assets/5ac4be04-35dc-4119-91d4-92fd7b92d3ea)
-
----
-
 ## 🏗️ Architecture
 
 ```
