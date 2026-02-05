@@ -3,8 +3,6 @@
 
 ![Project Banner](https://img.shields.io/badge/Made%20with-❤️-red)
 ![Flutter](https://img.shields.io/badge/Flutter-3.0+-blue?logo=flutter)
-![Python](https://img.shields.io/badge/Python-3.11+-green?logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-teal?logo=fastapi)
 ![Gemini](https://img.shields.io/badge/Google-Gemini%202.5-orange?logo=google)
 
 **A powerful, intelligent audio transcription application built with love for accessibility** 💙
