@@ -37,10 +37,19 @@ class InitialView extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
-        Text(
-          "Record voice notes or share audio\nfiles from WhatApp.",
+        Text.rich(
+          TextSpan(
+            text: "Record voice notes or ",
+            style: TextStyle(fontSize: 20, color: Colors.grey.shade600, height: 1.5),
+            children: [
+              TextSpan(
+                text: "share audio files from 'WhatApp'",
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              TextSpan(text: "."),
+            ],
+          ),
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 20, color: Colors.grey.shade600, height: 1.5),
         ),
         
         const SizedBox(height: 50),

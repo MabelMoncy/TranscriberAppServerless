@@ -1,7 +1,7 @@
 name: transcriberapp
 description: "A serverlass AI Audio transcriber."
 publish_to: 'none'
-version: 0.1.0
+version: 2.0.0
 
 environment:
   sdk: ^3.9.2
