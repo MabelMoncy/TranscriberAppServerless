@@ -1,64 +1,101 @@
 import 'package:flutter/material.dart';
-import 'gradient_button.dart'; // Import the new button
+import 'package:external_app_launcher/external_app_launcher.dart';
+import 'gradient_button.dart';
 
 class InitialView extends StatelessWidget {
   final VoidCallback onStartRecording;
 
   const InitialView({Key? key, required this.onStartRecording}) : super(key: key);
 
+  Future<void> _openWhatsApp() async {
+    try {
+      await LaunchApp.openApp(
+        androidPackageName: 'com.whatsapp',
+        iosUrlScheme: 'whatsapp://',
+      );
+    } catch (e) {
+      debugPrint("Could not open WhatsApp: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // --- Big Soft Circle Background ---
+        // Soft Circle Background
         Container(
-          height: 200,
-          width: 200,
+          height: 180,
+          width: 180,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor, // <--- Dynamic
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.blue.withOpacity(0.1),
+                color: Theme.of(context).shadowColor, // <--- Dynamic
                 blurRadius: 30,
                 spreadRadius: 10,
               )
             ],
           ),
           child: const Center(
-            child: Icon(Icons.mic_none_rounded, size: 100, color: Color(0xFF448AFF)),
+            child: Icon(Icons.mic_none_rounded, size: 90, color: Color(0xFF448AFF)),
           ),
         ),
+        const SizedBox(height: 30),
+        
+        // Title
+        Text(
+          "Transcriber",
+          style: TextStyle(
+            fontSize: 28, 
+            fontWeight: FontWeight.bold, 
+            color: Theme.of(context).textTheme.bodyLarge?.color // <--- Dynamic
+          ),
+        ),
+        const SizedBox(height: 10),
+        
+        // Subtitle
+        Text(
+          "Record voice notes or share audio\nfiles from WhatsApp.",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 16, 
+            color: Theme.of(context).textTheme.bodyMedium?.color, // <--- Dynamic (Grey)
+            height: 1.5
+          ),
+        ),
+        
         const SizedBox(height: 40),
         
-        const Text(
-          "Ready to Transcribe",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 12),
-        Text.rich(
-          TextSpan(
-            text: "Record voice notes or ",
-            style: TextStyle(fontSize: 20, color: Colors.grey.shade600, height: 1.5),
-            children: [
-              TextSpan(
-                text: "share audio files from 'WhatApp'",
-                style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
-              ),
-              TextSpan(text: "."),
-            ],
-          ),
-          textAlign: TextAlign.center,
-        ),
-        
-        const SizedBox(height: 50),
-        
-        // --- New Gradient Button ---
         GradientButton(
           text: "Start Recording",
-          icon: Icons.mic,
+          icon: Icons.mic_rounded,
           onPressed: onStartRecording,
+        ),
+
+        const SizedBox(height: 20),
+
+        OutlinedButton.icon(
+          onPressed: _openWhatsApp,
+          icon: const Icon(Icons.chat_bubble_outline_rounded, color: Colors.green),
+          label: const Text("Open WhatsApp"),
+          style: OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+            side: const BorderSide(color: Colors.green, width: 1.5),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            foregroundColor: Colors.green,
+            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+        ),
+        
+        const SizedBox(height: 10),
+        Text(
+          "(Select audio in WhatsApp -> Share -> Transcriber)",
+          style: TextStyle(
+            fontSize: 12, 
+            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.7)
+          ),
         ),
       ],
     );

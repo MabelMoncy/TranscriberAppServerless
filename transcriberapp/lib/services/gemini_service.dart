@@ -6,7 +6,7 @@ import 'api_key_manager.dart';
 class GeminiService {
   final ApiKeyManager _keyManager = ApiKeyManager();
 
-  // --- MODEL CONFIGURATION ---
+  // Models
   static const String _primaryModel = "gemini-2.5-pro";
   static const String _secondaryModel = "gemini-2.5-flash";
   static const String _tertiaryModel = "gemini-2.5-flash-lite";
@@ -18,53 +18,41 @@ class GeminiService {
       throw Exception("API Key missing. Please restart the app and setup your key.");
     }
 
-    // 1. Smart Mime Type Detection
+    // Smart Mime Type
     String? mimeType = lookupMimeType(audioFile.path);
-    
-    // Manual overrides for common audio issues
     if (audioFile.path.endsWith('.opus')) {
-      mimeType = 'audio/ogg'; // WhatsApp Voice Notes
+      mimeType = 'audio/ogg'; 
     } else if (audioFile.path.endsWith('.m4a')) {
-      mimeType = 'audio/mp4'; // iOS/Flutter Record
+      mimeType = 'audio/mp4'; 
     }
     mimeType ??= 'audio/mp4'; 
-
-    print("📂 File: ${audioFile.path}");
-    print("🏷️ Detected Mime: $mimeType");
 
     final bytes = await audioFile.readAsBytes();
     
     final content = [
       Content.multi([
-        TextPart("Transcribe this audio exactly word-for-word. If there is no clear speech, respond with: [NO CLEAR SPEECH]"),
+        // Simple prompt: Allows the AI to handle grammar/summarization naturally
+        TextPart("Transcribe this audio."),
         DataPart(mimeType, bytes), 
       ])
     ];
 
-    // --- 3-LAYER FALLBACK SYSTEM ---
-    
-    // Level 1: Primary (Gemini 2.5 Pro)
+    // Fallback System
     try {
-      print("🚀 Attempting Level 1: $_primaryModel...");
+      print("🚀 Level 1: $_primaryModel");
       return await _tryTranscribe(apiKey, _primaryModel, content);
     } catch (e) {
       print("⚠️ $_primaryModel Failed: $e");
-      
-      // Level 2: Secondary (Gemini 2.5 Flash)
       try {
-        print("⚡ Switching to Level 2: $_secondaryModel...");
+        print("⚡ Level 2: $_secondaryModel");
         return await _tryTranscribe(apiKey, _secondaryModel, content);
       } catch (e2) {
         print("⚠️ $_secondaryModel Failed: $e2");
-
-        // Level 3: Tertiary (Gemini 2.5 Flash-Lite)
         try {
-          print("🛡️ Switching to Level 3: $_tertiaryModel...");
+          print("🛡️ Level 3: $_tertiaryModel");
           return await _tryTranscribe(apiKey, _tertiaryModel, content);
         } catch (e3) {
-          // If all 3 fail, throw the final error
-          print("❌ All Models Failed.");
-          throw Exception("Transcription failed on all models. Last error: $e3");
+          throw Exception("Transcription failed. Please check internet/key.");
         }
       }
     }
@@ -74,10 +62,15 @@ class GeminiService {
     final model = GenerativeModel(
       model: modelName, 
       apiKey: key,
+      // We keep temperature 0 to prevent hallucinations (making up fake text),
+      // but we removed the strict prompt constraints so it flows naturally.
+      generationConfig: GenerationConfig(
+        temperature: 0,
+        candidateCount: 1,
+      ),
     );
 
     final response = await model.generateContent(content);
-    
     if (response.text == null) throw Exception("Empty response from AI");
     return response.text!;
   }

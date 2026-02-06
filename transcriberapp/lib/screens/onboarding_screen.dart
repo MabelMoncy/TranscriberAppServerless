@@ -61,8 +61,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
+    final cardColor = Theme.of(context).cardColor;
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -76,7 +80,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Container(
                     height: 100,
                     width: 100,
-                    color: Colors.white,
+                    color: Colors.white, // Keep logo bg white or make transparent
                     child: Image.asset(
                       'assets/icon/app_icon.png',
                       fit: BoxFit.contain,
@@ -85,29 +89,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              const Text(
+              Text(
                 "Welcome to Audio Transcriber",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: textColor,
                 ),
               ),
+              const SizedBox(height: 8),
               Text(
                 "Your smart solution for WhatsApp Voice Transcription",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  color: textColor,
                 ),
               ),
               const SizedBox(height: 5),
               Text(
                 "Get a free Gemini API Key to start.",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
+                style: TextStyle(
+                  color: isDark ? Colors.grey.shade400 : Colors.grey.shade600, 
+                  fontSize: 16
+                ),
               ),
 
               const SizedBox(height: 20),
@@ -116,11 +124,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               OutlinedButton.icon(
                 onPressed: () => _launchUrl("https://youtu.be/soB9zHm_o1s?si=fF5gVN97Vf0bZWaS"),
                 icon: const Icon(Icons.play_circle_fill, color: Colors.red),
-                label: const Text("Watch Tutorial on YouTube"),
+                label: Text("Watch Tutorial on YouTube", style: TextStyle(color: textColor)),
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black87,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  side: BorderSide(color: Colors.grey.shade300),
+                  side: BorderSide(color: isDark ? Colors.grey.shade700 : Colors.grey.shade300),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
               ),
@@ -131,9 +138,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade50,
+                  color: isDark ? const Color(0xFF1E1E1E) : Colors.grey.shade50,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.grey.shade200),
+                  border: Border.all(color: isDark ? Colors.grey.shade800 : Colors.grey.shade200),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -173,19 +180,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               // --- Input Field ---
               TextField(
                 controller: _keyController,
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(color: textColor),
                 decoration: InputDecoration(
                   labelText: "Paste API Key Here",
                   hintText: "AIza...",
-                  hintStyle: TextStyle(color: Colors.grey.shade400),
+                  hintStyle: TextStyle(color: isDark ? Colors.grey.shade600 : Colors.grey.shade400),
                   labelStyle: const TextStyle(color: Colors.blueAccent),
                   prefixIcon: const Icon(Icons.vpn_key, color: Colors.blueAccent),
                   filled: true,
-                  fillColor: Colors.grey.shade100,
+                  fillColor: isDark ? const Color(0xFF1E1E1E) : Colors.grey.shade100,
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Colors.grey.shade300),
+                    borderSide: BorderSide(color: isDark ? Colors.grey.shade800 : Colors.grey.shade300),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -204,8 +211,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: ElevatedButton(
                       onPressed: _submitKey,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black, // Dark button for contrast
-                        foregroundColor: Colors.white,
+                        backgroundColor: isDark ? Colors.white : Colors.black, 
+                        foregroundColor: isDark ? Colors.black : Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         elevation: 0,
@@ -232,6 +239,7 @@ class _StepItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = Theme.of(context).textTheme.bodyMedium?.color;
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Row(
@@ -242,7 +250,7 @@ class _StepItem extends StatelessWidget {
           Expanded(
             child: Text(
               text, 
-              style: TextStyle(color: Colors.grey.shade800, fontSize: 14, height: 1.4)
+              style: TextStyle(color: textColor, fontSize: 14, height: 1.4)
             )
           ),
         ],

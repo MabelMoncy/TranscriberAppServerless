@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/splash_screen.dart';
+import 'services/theme_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Make status bar transparent so our gradients shine through
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark, 
-  ));
-
+  await ThemeService.instance.loadTheme();
   runApp(const MyApp());
 }
 
@@ -20,47 +15,85 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Transcriber',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        scaffoldBackgroundColor: const Color(0xFFF5F7FA), // Soft Blue-Grey Background from image
-        primaryColor: const Color(0xFF448AFF), // Electric Blue
-        
-        // --- TEXT THEME (Poppins) ---
-        textTheme: GoogleFonts.poppinsTextTheme(
-          Theme.of(context).textTheme.apply(
-            bodyColor: const Color(0xFF2D3436), // Dark Grey Text
-            displayColor: const Color(0xFF2D3436),
+    return AnimatedBuilder(
+      animation: ThemeService.instance,
+      builder: (context, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Transcriber',
+          themeMode: ThemeService.instance.themeMode,
+          
+          // --- LIGHT THEME (Black Text) ---
+          theme: _buildTheme(
+            brightness: Brightness.light,
+            background: const Color(0xFFF5F7FA), // Light Grey BG
+            surface: Colors.white,               // White Cards
+            text: const Color(0xFF1A1A1A),       // Pure Black Text
+            subText: const Color(0xFF555555),    // Dark Grey Subtext
+            shadow: Colors.blue.withOpacity(0.08),
+            iconColor: const Color(0xFF1A1A1A),
           ),
-        ),
 
-        // --- CARD THEME ---
-        cardTheme: CardThemeData(
-          color: Colors.white,
-          elevation: 8,
-          shadowColor: const Color(0xFF448AFF).withOpacity(0.15), // Colored Shadow
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        ),
-
-        // --- APP BAR THEME ---
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.transparent, // Transparent to show background
-          elevation: 0,
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Color(0xFF2D3436)),
-          titleTextStyle: TextStyle(
-            color: Color(0xFF2D3436), 
-            fontSize: 22, 
-            fontWeight: FontWeight.w700,
-            fontFamily: 'Poppins' // Force font on AppBar
+          // --- DARK THEME (White Text) ---
+          darkTheme: _buildTheme(
+            brightness: Brightness.dark,
+            background: const Color(0xFF121212), // Dark BG
+            surface: const Color(0xFF1E1E1E),    // Dark Cards
+            text: const Color(0xFFFFFFFF),       // Pure White Text
+            subText: const Color(0xFFCCCCCC),    // Light Grey Subtext
+            shadow: Colors.black.withOpacity(0.5),
+            iconColor: Colors.white,
           ),
-        ),
-        
-        useMaterial3: true,
+
+          home: const SplashScreen(),
+        );
+      },
+    );
+  }
+
+  ThemeData _buildTheme({
+    required Brightness brightness,
+    required Color background,
+    required Color surface,
+    required Color text,
+    required Color subText,
+    required Color shadow,
+    required Color iconColor,
+  }) {
+    final baseTheme = ThemeData(brightness: brightness);
+    
+    return baseTheme.copyWith(
+      scaffoldBackgroundColor: background,
+      primaryColor: const Color(0xFF448AFF),
+      cardColor: surface,
+      shadowColor: shadow,
+      
+      // Define Global Text Colors explicitly
+      textTheme: GoogleFonts.poppinsTextTheme(baseTheme.textTheme).apply(
+        bodyColor: text,
+        displayColor: text,
       ),
-      home: const SplashScreen(),
+
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: iconColor),
+        titleTextStyle: GoogleFonts.poppins(
+          color: text, 
+          fontSize: 22, 
+          fontWeight: FontWeight.w700
+        ),
+      ),
+      
+      cardTheme: CardThemeData(
+        color: surface,
+        elevation: 8,
+        shadowColor: shadow,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      ),
+      
+      iconTheme: IconThemeData(color: iconColor),
     );
   }
 }

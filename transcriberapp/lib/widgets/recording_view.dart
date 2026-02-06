@@ -21,30 +21,73 @@ class RecordingView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          "Recording...",
-          style: TextStyle(fontSize: 18, color: Colors.redAccent, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          _formatDuration(duration),
-          style: const TextStyle(
-            fontSize: 60,
-            fontWeight: FontWeight.w300,
-            color: Colors.black, // Dark numbers
-            fontFeatures: [FontFeature.tabularFigures()],
+        // Animation Circle
+        Container(
+          height: 120,
+          width: 120,
+          decoration: BoxDecoration(
+            color: Colors.redAccent.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: const Center(
+            child: Icon(Icons.mic, size: 60, color: Colors.redAccent),
           ),
         ),
         const SizedBox(height: 40),
-        ElevatedButton.icon(
-          onPressed: onStopRecording,
-          icon: const Icon(Icons.stop),
-          label: const Text("Stop & Transcribe"),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        
+        const Text(
+          "Recording...",
+          style: TextStyle(
+            fontSize: 20, 
+            fontWeight: FontWeight.w600,
+            color: Colors.redAccent 
+          ),
+        ),
+        const SizedBox(height: 10),
+        
+        // --- TIMER (Dynamic Color) ---
+        Text(
+          _formatDuration(duration),
+          style: TextStyle(
+            fontSize: 48, 
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.bodyLarge?.color, // <--- FIXED
+          ),
+        ),
+        
+        const SizedBox(height: 50),
+        
+        // Stop Button
+        GestureDetector(
+          onTap: onStopRecording,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            decoration: BoxDecoration(
+              color: Colors.redAccent,
+              borderRadius: BorderRadius.circular(40),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.redAccent.withOpacity(0.4),
+                  blurRadius: 12,
+                  offset: const Offset(0, 6),
+                )
+              ],
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.stop_rounded, color: Colors.white, size: 32),
+                SizedBox(width: 12),
+                Text(
+                  "Stop",
+                  style: TextStyle(
+                    color: Colors.white, 
+                    fontSize: 20, 
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],

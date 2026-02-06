@@ -37,6 +37,7 @@ dependencies:
   video_player: ^2.10.1
   chewie: ^1.13.0
   google_fonts: ^8.0.1
+  external_app_launcher: ^4.0.3
 
 dev_dependencies:
   flutter_test:

@@ -25,17 +25,29 @@ class ErrorView extends StatelessWidget {
             color: Colors.redAccent,
           ),
           const SizedBox(height: 20),
+          
+          // Title (Dynamic)
           Text(
             isAccidental ? "No Speech Detected" : "Something Went Wrong",
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+            style: TextStyle(
+              fontSize: 22, 
+              fontWeight: FontWeight.bold, 
+              color: Theme.of(context).textTheme.bodyLarge?.color // <--- FIXED
+            ),
           ),
           const SizedBox(height: 10),
+          
+          // Error Message (Dynamic)
           Text(
             errorMessage ?? "An unknown error occurred.",
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16, color: Colors.black87),
+            style: TextStyle(
+              fontSize: 16, 
+              color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.8) // <--- FIXED
+            ),
           ),
           const SizedBox(height: 40),
+          
           ElevatedButton.icon(
             onPressed: onRetry,
             icon: const Icon(Icons.refresh),
