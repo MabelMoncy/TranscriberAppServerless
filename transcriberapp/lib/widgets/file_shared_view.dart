@@ -17,17 +17,29 @@ class FileSharedView extends StatelessWidget {
       children: [
         const Icon(Icons.audio_file, size: 80, color: Colors.blueAccent),
         const SizedBox(height: 24),
+        
+        // "File Selected" Label
         Text(
           "File Selected",
-          style: TextStyle(fontSize: 18, color: Colors.grey.shade600),
+          style: TextStyle(
+            fontSize: 18, 
+            color: Theme.of(context).textTheme.bodyMedium?.color // <--- FIXED
+          ),
         ),
         const SizedBox(height: 8),
+        
+        // File Name (Dynamic)
         Text(
           fileName,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(
+            fontSize: 20, 
+            fontWeight: FontWeight.bold, 
+            color: Theme.of(context).textTheme.bodyLarge?.color // <--- FIXED
+          ),
         ),
         const SizedBox(height: 40),
+        
         ElevatedButton.icon(
           onPressed: onStartTranscription,
           icon: const Icon(Icons.transcribe),

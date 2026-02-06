@@ -45,19 +45,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // Dynamic Background
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor, 
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // --- YOUR LOGO (Updated Path) ---
+            // --- YOUR LOGO ---
             Container(
               height: 120,
               width: 120,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 image: const DecorationImage(
-                  image: AssetImage('assets/icon/app_icon.png'), // <--- FIXED
+                  image: AssetImage('assets/icon/app_icon.png'),
                   fit: BoxFit.contain,
                 ),
               ),
@@ -65,12 +66,13 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 24),
             
             // --- App Name ---
-            const Text(
+            Text(
               "Audio Transcriber",
               style: TextStyle(
                 fontSize: 32, 
                 fontWeight: FontWeight.bold, 
-                color: Colors.black,
+                // Dynamic Text Color
+                color: Theme.of(context).textTheme.bodyLarge?.color,
                 letterSpacing: 1.5
               ),
             ),

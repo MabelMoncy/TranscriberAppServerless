@@ -16,15 +16,26 @@ class LoadingView extends StatelessWidget {
           child: CircularProgressIndicator(strokeWidth: 6, color: Colors.blueAccent),
         ),
         const SizedBox(height: 30),
+        
+        // Status Message (Dynamic Color)
         Text(
           statusMessage,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),
+          style: TextStyle(
+            fontSize: 18, 
+            fontWeight: FontWeight.w500, 
+            color: Theme.of(context).textTheme.bodyLarge?.color // <--- FIXED
+          ),
         ),
         const SizedBox(height: 10),
+        
+        // Subtitle (Dynamic Grey)
         Text(
           "This might take a few seconds...",
-          style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+          style: TextStyle(
+            fontSize: 14, 
+            color: Theme.of(context).textTheme.bodyMedium?.color // <--- FIXED
+          ),
         ),
       ],
     );
