@@ -32,6 +32,7 @@ This app represents more than technology; it represents the power of using our s
 - 💾 **History Management** - Save, view, and manage all your transcriptions
 - 🗑️ **Smart Garbage Detection** - Automatically filters out accidental or empty recordings
 - 🔑**Bring Your Own Key" (BYOK) model**
+- 🌓 **Dark/Light Mode** - Helps users switch to dark or light mode 
 - 🔒 **Secure API** - Protected endpoints with secret-based authentication
 
 ### 🛡️ Advanced Features
