@@ -141,7 +141,7 @@ flutter build apk --release
 1. Tap the **history button** (clock icon)
 2. View all past transcriptions
 3. Tap any entry to view details. You can View and also hear by taping the play button
-4. For deleting tap the delete button
+4. For deleting long press and select. then delete
 
 ---
 
@@ -178,16 +178,11 @@ While this is a personal project, I welcome contributions! If you'd like to help
 
 ---
 
-## 📝 Roadmap
+## 🪪Vision 
 
-- [ ] iOS support
-- [ ] Multi-language transcription
-- [ ] Speaker identification
-- [ ] Export transcriptions (PDF, TXT)
-- [ ] Real-time streaming transcription
-- [ ] Voice-to-voice translation
-- [ ] Cloud sync for history
-- [ ] Dark mode improvements
+I would like to publish this app in playstore. But since i cant handle a server now i am keeping this as such.
+Anyone can suggest me improvements or new ideas. To see the vesrion with the server go to **TranscriberAppWithServer** repo.
+The **TranscriberAppWithServer** repo is not the latest version. The New version is in this repository
 
 ---
 
