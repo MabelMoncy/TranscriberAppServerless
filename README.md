@@ -23,7 +23,8 @@ This project holds a special place in my heart. It was created for my father, wh
 This app represents more than technology; it represents the power of using our skills to make a meaningful difference in the lives of those we love.
 
 ---
-
+### why a serverless model?
+### Ans: Since i cannot afford a server now i made this serverless model which call the API withinn the client device. (This is not a secure Method but currently i can do this.). If you guys find any other method i can host my server for free let me know. The Same project is added as another repo in my profile with a server model approach.
 ## 🌟 Features
 
 ### ⚡ Core Functionality
