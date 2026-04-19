@@ -25,6 +25,7 @@ This app represents more than technology; it represents the power of using our s
 ## App Image 
 <img width="1080" height="1440" alt="TranscriberAppImage" src="https://github.com/user-attachments/assets/2c38629f-6e50-4f7c-a749-72bc0ba6428e" />
 ---
+
 ### why a serverless model?
 ### Ans: Since i cannot afford a server now i made this serverless model which call the API withinn the client device. (This is not a secure Method but currently i can do this.). If you guys find any other method i can host my server for free let me know. The Same project is added as another repo in my profile with a server model approach.
 ## 🌟 Features
