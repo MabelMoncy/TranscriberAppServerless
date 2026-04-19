@@ -13,6 +13,8 @@
 </div>
 
 ---
+## App Image
+<img width="1080" height="1440" alt="TranscriberAppImage" src="https://github.com/user-attachments/assets/c1c9acaf-2c54-403a-a4e5-092382488673" />
 
 ## 💝 A Personal Story
 
