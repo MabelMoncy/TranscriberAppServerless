@@ -13,8 +13,6 @@
 </div>
 
 ---
-## App Image
-<img width="1080" height="1440" alt="TranscriberAppImage" src="https://github.com/user-attachments/assets/c1c9acaf-2c54-403a-a4e5-092382488673" />
 
 ## 💝 A Personal Story
 
@@ -23,7 +21,8 @@ This project holds a special place in my heart. It was created for my father, wh
 **This is not just another project in my portfolio—it's one of my most cherished creations throughout my entire development journey.** Every line of code was written with purpose, every feature designed with empathy, and every bug fixed with determination. 
 
 This app represents more than technology; it represents the power of using our skills to make a meaningful difference in the lives of those we love.
-
+## App Image
+<img width="1080" height="1440" alt="TranscriberAppImage" src="https://github.com/user-attachments/assets/c1c9acaf-2c54-403a-a4e5-092382488673" />
 ---
 ### why a serverless model?
 ### Ans: Since i cannot afford a server now i made this serverless model which call the API withinn the client device. (This is not a secure Method but currently i can do this.). If you guys find any other method i can host my server for free let me know. The Same project is added as another repo in my profile with a server model approach.
