@@ -17,8 +17,8 @@
 ## 💝 A Personal Story
 
 This project holds a special place in my heart. It was created for my father, who is hearing impaired, to help him convert audio messages, voice notes, and recordings into readable text. Watching him struggle to understand audio content inspired me to build something that could make his daily life easier.
+This is not just another project in my portfolio—it's one of my most cherished creations throughout my entire development journey.Every line of code was written with purpose, every feature designed with empathy, and every bug fixed with determination. This app represents more than technology; it represents the power of using our skills to make a meaningful difference in the lives of those we love.
 
-**This is not just another project in my portfolio—it's one of my most cherished creations throughout my entire development journey.** Every line of code was written with purpose, every feature designed with empathy, and every bug fixed with determination. This app represents more than technology; it represents the power of using our skills to make a meaningful difference in the lives of those we love.
 ---
 ## App Image 
 <img width="1080" height="1440" alt="TranscriberAppImage" src="https://github.com/user-attachments/assets/2c38629f-6e50-4f7c-a749-72bc0ba6428e" />
