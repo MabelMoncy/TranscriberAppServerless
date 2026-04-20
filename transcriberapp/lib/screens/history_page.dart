@@ -376,7 +376,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   style: TextStyle(
                                     fontSize: 14, 
                                     // Use body color instead of fixed grey so it works in dark mode
-                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.8), 
+                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.8),
                                     height: 1.5
                                   ),
                                 ),
