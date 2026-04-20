@@ -176,7 +176,7 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   void _shareTranscript(String text) {
-    Share.share(text);
+    SharePlus.instance.share(ShareParams(text: text));
   }
 
   void _showFullTranscription(TranscriptionRecord record) {

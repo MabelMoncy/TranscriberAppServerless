@@ -15,7 +15,7 @@ class SuccessView extends StatelessWidget {
 
   void _onShare(String text) {
     if (text.isNotEmpty) {
-      Share.share(text);
+      SharePlus.instance.share(ShareParams(text: text));
     }
   }
 
