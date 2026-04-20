@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'screens/splash_screen.dart';
 import 'services/theme_service.dart';
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
             surface: Colors.white,               // White Cards
             text: const Color(0xFF1A1A1A),       // Pure Black Text
             subText: const Color(0xFF555555),    // Dark Grey Subtext
-            shadow: Colors.blue.withOpacity(0.08),
+            shadow: Colors.blue.withValues(alpha: 0.08),
             iconColor: const Color(0xFF1A1A1A),
           ),
 
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
             surface: const Color(0xFF1E1E1E),    // Dark Cards
             text: const Color(0xFFFFFFFF),       // Pure White Text
             subText: const Color(0xFFCCCCCC),    // Light Grey Subtext
-            shadow: Colors.black.withOpacity(0.5),
+            shadow: Colors.black.withValues(alpha: 0.5),
             iconColor: Colors.white,
           ),
 

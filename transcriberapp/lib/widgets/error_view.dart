@@ -6,11 +6,11 @@ class ErrorView extends StatelessWidget {
   final VoidCallback onRetry;
 
   const ErrorView({
-    Key? key,
+    super.key,
     required this.errorMessage,
     required this.isAccidental,
     required this.onRetry,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class ErrorView extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16, 
-              color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.8) // <--- FIXED
+              color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.8) // <--- FIXED
             ),
           ),
           const SizedBox(height: 40),

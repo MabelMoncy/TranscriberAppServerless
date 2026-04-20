@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:mime/mime.dart'; 
@@ -39,17 +40,17 @@ class GeminiService {
 
     // Fallback System
     try {
-      print("🚀 Level 1: $_primaryModel");
+      log("🚀 Level 1: $_primaryModel");
       return await _tryTranscribe(apiKey, _primaryModel, content);
     } catch (e) {
-      print("⚠️ $_primaryModel Failed: $e");
+      log("⚠️ $_primaryModel Failed: $e");
       try {
-        print("⚡ Level 2: $_secondaryModel");
+        log("⚡ Level 2: $_secondaryModel");
         return await _tryTranscribe(apiKey, _secondaryModel, content);
       } catch (e2) {
-        print("⚠️ $_secondaryModel Failed: $e2");
+        log("⚠️ $_secondaryModel Failed: $e2");
         try {
-          print("🛡️ Level 3: $_tertiaryModel");
+          log("🛡️ Level 3: $_tertiaryModel");
           return await _tryTranscribe(apiKey, _tertiaryModel, content);
         } catch (e3) {
           throw Exception("Transcription failed. Please check internet/key.");
