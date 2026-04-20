@@ -5,10 +5,10 @@ class RecordingView extends StatelessWidget {
   final VoidCallback onStopRecording;
 
   const RecordingView({
-    Key? key,
+    super.key,
     required this.duration,
     required this.onStopRecording,
-  }) : super(key: key);
+  });
 
   String _formatDuration(int seconds) {
     final minutes = (seconds ~/ 60).toString().padLeft(2, '0');
@@ -26,7 +26,7 @@ class RecordingView extends StatelessWidget {
           height: 120,
           width: 120,
           decoration: BoxDecoration(
-            color: Colors.redAccent.withOpacity(0.1),
+            color: Colors.redAccent.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: const Center(
@@ -67,7 +67,7 @@ class RecordingView extends StatelessWidget {
               borderRadius: BorderRadius.circular(40),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.redAccent.withOpacity(0.4),
+                  color: Colors.redAccent.withValues(alpha: 0.4),
                   blurRadius: 12,
                   offset: const Offset(0, 6),
                 )

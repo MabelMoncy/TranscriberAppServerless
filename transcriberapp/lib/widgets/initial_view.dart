@@ -5,7 +5,7 @@ import 'gradient_button.dart';
 class InitialView extends StatelessWidget {
   final VoidCallback onStartRecording;
 
-  const InitialView({Key? key, required this.onStartRecording}) : super(key: key);
+  const InitialView({super.key, required this.onStartRecording});
 
   Future<void> _openWhatsApp() async {
     try {
@@ -94,7 +94,7 @@ class InitialView extends StatelessWidget {
           "(Select audio in WhatsApp -> Share -> Transcriber)",
           style: TextStyle(
             fontSize: 12, 
-            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.7)
+            color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.7)
           ),
         ),
       ],

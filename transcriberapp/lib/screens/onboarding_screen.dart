@@ -63,7 +63,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final textColor = Theme.of(context).textTheme.bodyLarge?.color;
-    final cardColor = Theme.of(context).cardColor;
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,

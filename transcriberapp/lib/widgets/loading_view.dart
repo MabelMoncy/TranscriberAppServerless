@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LoadingView extends StatelessWidget {
   final String statusMessage;
 
-  const LoadingView({Key? key, required this.statusMessage}) : super(key: key);
+  const LoadingView({super.key, required this.statusMessage});
 
   @override
   Widget build(BuildContext context) {

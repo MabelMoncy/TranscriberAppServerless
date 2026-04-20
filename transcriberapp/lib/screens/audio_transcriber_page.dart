@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -22,7 +21,7 @@ import '../services/database_service.dart';
 import '../services/network_helper.dart';
 
 class AudioTranscriberPage extends StatefulWidget {
-  const AudioTranscriberPage({Key? key}) : super(key: key);
+  const AudioTranscriberPage({super.key});
 
   @override
   State<AudioTranscriberPage> createState() => _AudioTranscriberPageState();
@@ -40,7 +39,6 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
   String? _errorMessage;
   String _statusMessage = "";
   
-  bool _isRecording = false;
   String? _recordingPath;
   Timer? _recordingTimer;
   int _recordingDuration = 0;
@@ -108,7 +106,7 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
       });
 
     } catch (e) {
-      print("Error processing files: $e");
+      debugPrint("Error processing files: $e");
       if (_completedResults.isNotEmpty) {
         setState(() => _appState = AppState.success);
       } else {
@@ -148,7 +146,6 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
       );
       
       setState(() {
-        _isRecording = true;
         _appState = AppState.liveRecording;
         _recordingDuration = 0;
       });
@@ -166,10 +163,6 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
     _recordingTimer = null;
     final path = await _audioRecorder.stop();
     
-    setState(() {
-      _isRecording = false;
-    });
-
     if (path != null) {
       _processFiles([SharedMediaFile(path: path, type: SharedMediaType.file)]);
     }
