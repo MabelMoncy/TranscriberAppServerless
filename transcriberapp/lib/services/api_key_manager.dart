@@ -1,14 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ApiKeyManager {
-  // SECURITY CONFIGURATION
-  // We explicitly enable EncryptedSharedPreferences.
-  // This forces the app to use the Android Keystore (Hardware Security).
-  final _storage = const FlutterSecureStorage(
-    aOptions: AndroidOptions(
-      encryptedSharedPreferences: true, 
-    ),
-  );
+  final _storage = const FlutterSecureStorage();
   
   static const _keyName = "USER_GEMINI_API_KEY";
 
