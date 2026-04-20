@@ -11,7 +11,7 @@
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [License](#-license)
 ## Download
 
-Download the latest APK from the link below:
+**Download the latest APK from the link below:**
 
 [Download Latest APK](https://github.com/MabelMoncy/TranscriberAppServerless/releases/tag/v0.1.0)
 </div>
