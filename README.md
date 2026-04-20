@@ -9,14 +9,15 @@
 **A powerful, intelligent audio transcription application built with love for accessibility** 💙
 
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [License](#-license)
+
+</div>
+
+---
 ## Download
 
 **Download the latest APK from the link below:**
 
 [Download Latest APK](https://github.com/MabelMoncy/TranscriberAppServerless/releases/tag/v0.1.0)
-</div>
-
----
 
 ## 💝 A Personal Story
 
