@@ -170,13 +170,27 @@ flutter build apk --release
 
 ## 🤝 Contributing
 
-While this is a personal project, I welcome contributions! If you'd like to help improve it:
+Thank you for helping make this accessibility app better. Please follow these steps for a smooth review:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. **Fork & clone**
+   - `git clone https://github.com/<your-username>/TranscriberAppServerless.git`
+   - `cd TranscriberAppServerless/transcriberapp`
+2. **Create a branch**
+   - Use a clear naming pattern: `feat/<slug>`, `fix/<slug>`, `chore/<slug>`, or `docs/<slug>`
+   - Keep changes focused and small where possible
+3. **Run the project locally**
+   - `flutter pub get`
+   - `flutter run` (ensure a device/emulator is available)
+4. **Validate before opening a PR**
+   - `dart format --set-exit-if-changed .`
+   - `flutter analyze`
+   - `flutter test`
+   - Optional: `flutter build apk --release` to confirm release readiness
+5. **Open a pull request**
+   - Fill in the PR template, link related issues, and add screenshots for UI changes
+   - Ensure no breaking changes are introduced and document any notable behavior updates
+
+Code style expectations: follow Dart & Flutter best practices, keep UI and business logic separated, prefer null-safe/typed code, add/extend tests when changing behavior, and avoid committing secrets (BYOK keys stay local).
 
 ---
 
@@ -231,4 +245,3 @@ If this project helps you or inspires you, please ⭐ star it on GitHub!
 If this project made a difference in your life or someone you know, I'd love to hear about it!
 
 </div>
-
