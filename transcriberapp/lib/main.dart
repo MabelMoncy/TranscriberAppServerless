@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// Retained intentionally per project review request.
 // ignore: unnecessary_import
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
