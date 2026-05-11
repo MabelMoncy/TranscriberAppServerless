@@ -12,7 +12,7 @@ dependencies:
 
   # --- NEW: Serverless AI & Storage ---
   google_generative_ai: ^0.4.7   # The Gemini AI Engine
-  flutter_secure_storage: ^10.0.0 # Secure Vault for API Key
+  flutter_secure_storage: ^10.1.0 # Secure Vault for API Key
   shared_preferences: ^2.5.5     # To track "First Time" launch
   url_launcher: ^6.3.2           # To open the "Get API Key" link
   
@@ -29,14 +29,14 @@ dependencies:
   http: ^1.6.0
   mime: ^2.0.0
   http_parser: ^4.1.2
-  flutter_dotenv: ^6.0.0
+  flutter_dotenv: ^6.0.1
   rename: ^3.1.0
   intl: ^0.20.1
   audioplayers: ^6.6.0
   share_plus: ^12.0.2
   video_player: ^2.11.1
   chewie: ^1.13.1
-  google_fonts: ^8.0.2
+  google_fonts: ^8.1.0
   external_app_launcher: ^4.0.3
 
 dev_dependencies:
