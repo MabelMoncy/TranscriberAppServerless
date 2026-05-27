@@ -52,6 +52,7 @@ class GeminiService {
           print("🛡️ Level 3: $_tertiaryModel");
           return await _tryTranscribe(apiKey, _tertiaryModel, content);
         } catch (e3) {
+          print("⚠️ $_tertiaryModel Failed: $e3");
           throw Exception("Transcription failed. Please check internet/key.");
         }
       }
