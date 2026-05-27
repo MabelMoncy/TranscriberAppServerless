@@ -17,7 +17,7 @@
 
 **Download the latest APK from the link below:**
 
-[Download Latest APK](https://github.com/MabelMoncy/TranscriberAppServerless/releases/tag/v0.1.0)
+[Download Latest APK](https://github.com/MabelMoncy/TranscriberAppServerless/releases)
 
 ## 💝 A Personal Story
 
