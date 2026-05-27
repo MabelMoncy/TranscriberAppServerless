@@ -33,7 +33,7 @@ class RecordingView extends StatelessWidget {
             child: Icon(Icons.mic, size: 60, color: Colors.redAccent),
           ),
         ),
-        const SizedBox(height: 40),
+        const SizedBox(height: 28),
         
         const Text(
           "Recording...",
@@ -49,13 +49,14 @@ class RecordingView extends StatelessWidget {
         Text(
           _formatDuration(duration),
           style: TextStyle(
-            fontSize: 48, 
+            // Reduced from 48 → 36 to fit proportionally on OPPO A31
+            fontSize: 36, 
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).textTheme.bodyLarge?.color, // <--- FIXED
+            color: Theme.of(context).textTheme.bodyLarge?.color,
           ),
         ),
         
-        const SizedBox(height: 50),
+        const SizedBox(height: 36),
         
         // Stop Button
         GestureDetector(

@@ -32,22 +32,30 @@ class SuccessView extends StatelessWidget {
           ),
           child: const Icon(Icons.check_rounded, color: Colors.green, size: 40),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
         
         // --- Count Text ---
         Text(
           "${results.length} Transcription${results.length > 1 ? 's' : ''} Complete",
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 20, 
+            // Reduced 20 → 17 so the full text fits in one line on OPPO A31
+            fontSize: 17, 
             fontWeight: FontWeight.bold, 
-            color: Theme.of(context).textTheme.bodyLarge?.color // <--- Dynamic
+            color: Theme.of(context).textTheme.bodyLarge?.color
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 16),
 
         // --- List of Cards ---
-        Container(
-          constraints: const BoxConstraints(maxHeight: 450), 
+        // Uses 50% of screen height instead of a fixed 450px to adapt
+        // gracefully between small Android 9 16:9 screens and large modern
+        // displays without causing pixel overflow.
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.50,
+          ),
           child: ListView.separated(
             shrinkWrap: true,
             itemCount: results.length,

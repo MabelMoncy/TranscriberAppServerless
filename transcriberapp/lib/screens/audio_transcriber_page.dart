@@ -203,8 +203,16 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor, 
       appBar: AppBar(
         title: Text(
-          'Audio Transcriber', 
-          style: Theme.of(context).appBarTheme.titleTextStyle,
+          'Audio Transcriber',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          // Override the global 22px AppBar title to fit on OPPO A31's
+          // 720px screen alongside two action icons without truncating.
+          style: const TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.2,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.transparent,

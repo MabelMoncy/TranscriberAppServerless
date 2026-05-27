@@ -23,6 +23,23 @@ class MyApp extends StatelessWidget {
           title: 'Transcriber',
           themeMode: ThemeService.instance.themeMode,
           
+          // --- GLOBAL TEXT SCALE GUARD ---
+          // Clamps OS font scaling between 1.0x and 1.25x so that
+          // large legacy system font settings on Android 9 don't
+          // break fixed layout boundaries.
+          builder: (context, child) {
+            final mq = MediaQuery.of(context);
+            return MediaQuery(
+              data: mq.copyWith(
+                textScaler: mq.textScaler.clamp(
+                  minScaleFactor: 1.0,
+                  maxScaleFactor: 1.25,
+                ),
+              ),
+              child: child!,
+            );
+          },
+
           // --- LIGHT THEME (Black Text) ---
           theme: _buildTheme(
             brightness: Brightness.light,

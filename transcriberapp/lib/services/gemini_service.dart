@@ -43,6 +43,14 @@ class GeminiService {
       return await _tryTranscribe(apiKey, _primaryModel, content);
     } catch (e) {
       print("⚠️ $_primaryModel Failed: $e");
+      // Backoff: If quota/rate-limit error, give the API a 2-second
+      // breathing window before hammering the next tier.
+      final isQuotaError = e.toString().contains("Quota exceeded") ||
+          e.toString().contains("429");
+      if (isQuotaError) {
+        print("⏳ Quota hit — waiting 2s before Level 2...");
+        await Future.delayed(const Duration(seconds: 2));
+      }
       try {
         print("⚡ Level 2: $_secondaryModel");
         return await _tryTranscribe(apiKey, _secondaryModel, content);

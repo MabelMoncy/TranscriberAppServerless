@@ -25,32 +25,35 @@ class InitialView extends StatelessWidget {
       children: [
         // Soft Circle Background
         Container(
-          height: 180,
-          width: 180,
+          // Reduced from 180 → 140 to save vertical space on OPPO A31
+          height: 140,
+          width: 140,
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor, // <--- Dynamic
+            color: Theme.of(context).cardColor,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Theme.of(context).shadowColor, // <--- Dynamic
+                color: Theme.of(context).shadowColor,
                 blurRadius: 30,
                 spreadRadius: 10,
               )
             ],
           ),
           child: const Center(
-            child: Icon(Icons.mic_none_rounded, size: 90, color: Color(0xFF448AFF)),
+            child: Icon(Icons.mic_none_rounded, size: 70, color: Color(0xFF448AFF)),
           ),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 20),
         
         // Title
         Text(
           "Transcriber",
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: 28, 
             fontWeight: FontWeight.bold, 
-            color: Theme.of(context).textTheme.bodyLarge?.color // <--- Dynamic
+            color: Theme.of(context).textTheme.bodyLarge?.color
           ),
         ),
         const SizedBox(height: 10),
@@ -59,14 +62,16 @@ class InitialView extends StatelessWidget {
         Text(
           "Record voice notes or share audio\nfiles from WhatsApp.",
           textAlign: TextAlign.center,
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: 16, 
-            color: Theme.of(context).textTheme.bodyMedium?.color, // <--- Dynamic (Grey)
+            color: Theme.of(context).textTheme.bodyMedium?.color,
             height: 1.5
           ),
         ),
         
-        const SizedBox(height: 40),
+        const SizedBox(height: 24),
         
         GradientButton(
           text: "Start Recording",

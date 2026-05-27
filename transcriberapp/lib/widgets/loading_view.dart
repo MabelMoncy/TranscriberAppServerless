@@ -21,10 +21,12 @@ class LoadingView extends StatelessWidget {
         Text(
           statusMessage,
           textAlign: TextAlign.center,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: 18, 
             fontWeight: FontWeight.w500, 
-            color: Theme.of(context).textTheme.bodyLarge?.color // <--- FIXED
+            color: Theme.of(context).textTheme.bodyLarge?.color
           ),
         ),
         const SizedBox(height: 10),
@@ -32,9 +34,11 @@ class LoadingView extends StatelessWidget {
         // Subtitle (Dynamic Grey)
         Text(
           "This might take a few seconds...",
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontSize: 14, 
-            color: Theme.of(context).textTheme.bodyMedium?.color // <--- FIXED
+            color: Theme.of(context).textTheme.bodyMedium?.color
           ),
         ),
       ],

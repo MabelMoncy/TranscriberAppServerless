@@ -68,12 +68,15 @@ class _SplashScreenState extends State<SplashScreen> {
             // --- App Name ---
             Text(
               "Audio Transcriber",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 32, 
+                // Reduced from 32 → 24 so it renders in a single tight line
+                // on OPPO A31's 720px-wide viewport.
+                fontSize: 24, 
                 fontWeight: FontWeight.bold, 
-                // Dynamic Text Color
                 color: Theme.of(context).textTheme.bodyLarge?.color,
-                letterSpacing: 1.5
+                letterSpacing: 0.5,
               ),
             ),
             

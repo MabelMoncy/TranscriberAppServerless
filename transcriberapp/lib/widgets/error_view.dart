@@ -29,10 +29,12 @@ class ErrorView extends StatelessWidget {
           // Title (Dynamic)
           Text(
             isAccidental ? "No Speech Detected" : "Something Went Wrong",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 22, 
               fontWeight: FontWeight.bold, 
-              color: Theme.of(context).textTheme.bodyLarge?.color // <--- FIXED
+              color: Theme.of(context).textTheme.bodyLarge?.color
             ),
           ),
           const SizedBox(height: 10),
@@ -41,9 +43,11 @@ class ErrorView extends StatelessWidget {
           Text(
             errorMessage ?? "An unknown error occurred.",
             textAlign: TextAlign.center,
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               fontSize: 16, 
-              color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.8) // <--- FIXED
+              color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.8)
             ),
           ),
           const SizedBox(height: 40),
