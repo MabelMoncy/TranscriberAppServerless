@@ -1,1 +1,18 @@
 include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - avoid_print
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_const_literals_to_create_immutables
+    - prefer_final_locals
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - camel_case_types
+    - library_names
+    - avoid_empty_else
+    - cancel_subscriptions
+    - close_sinks
+    - always_declare_return_types
+    - annotate_overrides
