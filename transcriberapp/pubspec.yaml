@@ -1,20 +1,20 @@
 name: transcriberapp
-description: "A serverlass AI Audio transcriber."
+description: "A serverless AI Audio transcriber."
 publish_to: 'none'
-version: 2.0.0
+version: 2.1.0
 
 environment:
-  sdk: ^3.11.0
+  sdk: ^3.12.0
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # --- NEW: Serverless AI & Storage ---
-  google_generative_ai: ^0.4.7   # The Gemini AI Engine
-  flutter_secure_storage: ^10.3.0 # Secure Vault for API Key
-  shared_preferences: ^2.5.5     # To track "First Time" launch
-  url_launcher: ^6.3.2           # To open the "Get API Key" link
+  # --- Serverless AI & Storage ---
+  googleai_dart: ^9.0.0            # Gemini AI Engine (replaces deprecated google_generative_ai)
+  flutter_secure_storage: ^10.3.0  # Secure Vault for API Key
+  shared_preferences: ^2.5.5      # To track "First Time" launch
+  url_launcher: ^6.3.2            # To open the "Get API Key" link
   
   
   receive_sharing_intent:
@@ -26,16 +26,10 @@ dependencies:
   record: ^6.2.1
   sqflite: ^2.4.2
   path: ^1.9.1
-  http: ^1.6.0
   mime: ^2.0.0
-  http_parser: ^4.1.2
-  flutter_dotenv: ^6.0.1
-  rename: ^3.1.0
   intl: ^0.20.1
   audioplayers: ^6.6.0
   share_plus: ^13.1.0
-  video_player: ^2.11.1
-  chewie: ^1.14.1
   google_fonts: ^8.1.0
   external_app_launcher: ^4.0.3
 

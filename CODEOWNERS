@@ -1,0 +1,6 @@
+# CODEOWNERS
+# Use this file to require reviews from maintainers for specific directories or files.
+
+*                   @MabelMoncy
+/transcriberapp/    @MabelMoncy
+/android/           @MabelMoncy

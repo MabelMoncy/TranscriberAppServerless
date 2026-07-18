@@ -30,3 +30,18 @@ updates:
         update-types:
           - "minor"
           - "patch"
+
+  - package-ecosystem: "gradle"
+    directory: "/transcriberapp/android"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "UTC"
+    groups:
+      android-deps:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"

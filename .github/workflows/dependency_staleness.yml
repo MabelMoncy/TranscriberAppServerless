@@ -1,0 +1,45 @@
+name: Dependency Staleness Check
+
+on:
+  schedule:
+    - cron: '0 5 * * 1' # Runs at 05:00 UTC on Mondays
+  workflow_dispatch:
+
+jobs:
+  check-staleness:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: transcriberapp
+    permissions:
+      issues: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check Outdated Packages
+        id: check_outdated
+        run: |
+          OUTDATED=$(flutter pub outdated)
+          echo "$OUTDATED"
+          
+          # We can create a simple check. If there are resolvable updates, we might want to flag them.
+          # Here we just output it to a file for the next step.
+          echo "$OUTDATED" > outdated_report.txt
+
+      - name: Create Issue if highly outdated
+        uses: peter-evans/create-issue-from-file@v5
+        if: success()
+        with:
+          title: "Weekly Dependency Staleness Report"
+          content-filepath: transcriberapp/outdated_report.txt
+          labels: "dependencies, maintenance"
