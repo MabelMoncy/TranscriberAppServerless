@@ -12,7 +12,7 @@ dependencies:
 
   # --- NEW: Serverless AI & Storage ---
   google_generative_ai: ^0.4.7   # The Gemini AI Engine
-  flutter_secure_storage: ^10.3.0 # Secure Vault for API Key
+  flutter_secure_storage: ^10.3.1 # Secure Vault for API Key
   shared_preferences: ^2.5.5     # To track "First Time" launch
   url_launcher: ^6.3.2           # To open the "Get API Key" link
   
@@ -21,22 +21,22 @@ dependencies:
     git:
       url: https://github.com/KasemJaffer/receive_sharing_intent
       ref: 2cea396843cd3ab1b5ec4334be4233864637874e
-  permission_handler: ^12.0.1
-  path_provider: ^2.1.5
+  permission_handler: ^12.0.3
+  path_provider: ^2.1.6
   record: ^6.2.1
-  sqflite: ^2.4.2
+  sqflite: ^2.4.3
   path: ^1.9.1
   http: ^1.6.0
   mime: ^2.0.0
   http_parser: ^4.1.2
   flutter_dotenv: ^6.0.1
   rename: ^3.1.0
-  intl: ^0.20.1
-  audioplayers: ^6.6.0
-  share_plus: ^13.1.0
-  video_player: ^2.11.1
+  intl: ^0.20.3
+  audioplayers: ^6.8.1
+  share_plus: ^13.2.1
+  video_player: ^2.13.0
   chewie: ^1.14.1
-  google_fonts: ^8.1.0
+  google_fonts: ^8.2.0
   external_app_launcher: ^4.0.3
 
 dev_dependencies:
