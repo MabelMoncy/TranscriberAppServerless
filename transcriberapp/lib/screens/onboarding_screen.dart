@@ -20,8 +20,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (key.isEmpty || key.length < 10) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Please enter a valid Gemini API Key"), 
-          backgroundColor: Colors.redAccent
+          content: Text("Please enter a valid Gemini API Key"),
+          backgroundColor: Colors.redAccent,
         ),
       );
       return;
@@ -29,11 +29,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     setState(() => _isLoading = true);
     await _keyManager.saveApiKey(key);
-    
+
     if (!mounted) return;
-    
+
     Navigator.pushReplacement(
-      context, 
+      context,
       MaterialPageRoute(builder: (context) => const AudioTranscriberPage()),
     );
   }
@@ -46,9 +46,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Could not open link")),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text("Could not open link")));
       }
     }
   }
@@ -79,7 +79,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Container(
                     height: 100,
                     width: 100,
-                    color: Colors.white, // Keep logo bg white or make transparent
+                    color:
+                        Colors.white, // Keep logo bg white or make transparent
                     child: Image.asset(
                       'assets/icon/app_icon.png',
                       fit: BoxFit.contain,
@@ -112,8 +113,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 "Get a free Gemini API Key to start.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: isDark ? Colors.grey.shade400 : Colors.grey.shade600, 
-                  fontSize: 16
+                  color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
+                  fontSize: 16,
                 ),
               ),
 
@@ -121,13 +122,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
               // --- YouTube Tutorial Button ---
               OutlinedButton.icon(
-                onPressed: () => _launchUrl("https://youtu.be/soB9zHm_o1s?si=fF5gVN97Vf0bZWaS"),
+                onPressed: () => _launchUrl(
+                  "https://youtu.be/soB9zHm_o1s?si=fF5gVN97Vf0bZWaS",
+                ),
                 icon: const Icon(Icons.play_circle_fill, color: Colors.red),
-                label: Text("Watch Tutorial on YouTube", style: TextStyle(color: textColor)),
+                label: Text(
+                  "Watch Tutorial on YouTube",
+                  style: TextStyle(color: textColor),
+                ),
                 style: OutlinedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  side: BorderSide(color: isDark ? Colors.grey.shade700 : Colors.grey.shade300),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  side: BorderSide(
+                    color: isDark ? Colors.grey.shade700 : Colors.grey.shade300,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
 
@@ -139,13 +149,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 decoration: BoxDecoration(
                   color: isDark ? const Color(0xFF1E1E1E) : Colors.grey.shade50,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: isDark ? Colors.grey.shade800 : Colors.grey.shade200),
+                  border: Border.all(
+                    color: isDark ? Colors.grey.shade800 : Colors.grey.shade200,
+                  ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text("Steps to Create API Key:", 
-                      style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold, fontSize: 16)),
+                    Text(
+                      "Steps to Create API Key:",
+                      style: TextStyle(
+                        color: Colors.blueAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
                     SizedBox(height: 12),
                     _StepItem(text: "1. Go to Google AI Studio & Sign in"),
                     _StepItem(text: "2. Click 'Get API Key' (top-left)"),
@@ -162,14 +180,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
               // --- Button: Open Google Studio ---
               ElevatedButton.icon(
-                onPressed: () => _launchUrl('https://aistudio.google.com/app/apikey'),
+                onPressed: () =>
+                    _launchUrl('https://aistudio.google.com/app/apikey'),
                 icon: const Icon(Icons.open_in_new, size: 18),
                 label: const Text("Get Key from Google"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blueAccent,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                   elevation: 2,
                 ),
               ),
@@ -183,19 +204,36 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 decoration: InputDecoration(
                   labelText: "Paste API Key Here",
                   hintText: "Paste your Gemini API key",
-                  hintStyle: TextStyle(color: isDark ? Colors.grey.shade600 : Colors.grey.shade400),
+                  hintStyle: TextStyle(
+                    color: isDark ? Colors.grey.shade600 : Colors.grey.shade400,
+                  ),
                   labelStyle: const TextStyle(color: Colors.blueAccent),
-                  prefixIcon: const Icon(Icons.vpn_key, color: Colors.blueAccent),
+                  prefixIcon: const Icon(
+                    Icons.vpn_key,
+                    color: Colors.blueAccent,
+                  ),
                   filled: true,
-                  fillColor: isDark ? const Color(0xFF1E1E1E) : Colors.grey.shade100,
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
+                  fillColor: isDark
+                      ? const Color(0xFF1E1E1E)
+                      : Colors.grey.shade100,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: isDark ? Colors.grey.shade800 : Colors.grey.shade300),
+                    borderSide: BorderSide(
+                      color: isDark
+                          ? Colors.grey.shade800
+                          : Colors.grey.shade300,
+                    ),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.blueAccent, width: 2),
+                    borderSide: const BorderSide(
+                      color: Colors.blueAccent,
+                      width: 2,
+                    ),
                   ),
                 ),
               ),
@@ -203,27 +241,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const SizedBox(height: 24),
 
               // --- Submit Button ---
-              _isLoading 
-                ? const Center(child: CircularProgressIndicator())
-                : SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _submitKey,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: isDark ? Colors.white : Colors.black, 
-                        foregroundColor: isDark ? Colors.black : Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        elevation: 0,
-                      ),
-                      child: const Text(
-                        "Save & Start App", 
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+              _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _submitKey,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: isDark ? Colors.white : Colors.black,
+                          foregroundColor: isDark ? Colors.black : Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: const Text(
+                          "Save & Start App",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  
-               const SizedBox(height: 40),
+
+              const SizedBox(height: 40),
             ],
           ),
         ),
@@ -244,13 +287,17 @@ class _StepItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check_circle_outline, size: 16, color: Colors.grey.shade600),
+          Icon(
+            Icons.check_circle_outline,
+            size: 16,
+            color: Colors.grey.shade600,
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              text, 
-              style: TextStyle(color: textColor, fontSize: 14, height: 1.4)
-            )
+              text,
+              style: TextStyle(color: textColor, fontSize: 14, height: 1.4),
+            ),
           ),
         ],
       ),

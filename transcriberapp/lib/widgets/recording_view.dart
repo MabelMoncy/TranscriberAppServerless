@@ -34,30 +34,30 @@ class RecordingView extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 28),
-        
+
         const Text(
           "Recording...",
           style: TextStyle(
-            fontSize: 20, 
+            fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Colors.redAccent 
+            color: Colors.redAccent,
           ),
         ),
         const SizedBox(height: 10),
-        
+
         // --- TIMER (Dynamic Color) ---
         Text(
           _formatDuration(duration),
           style: TextStyle(
             // Reduced from 48 → 36 to fit proportionally on OPPO A31
-            fontSize: 36, 
+            fontSize: 36,
             fontWeight: FontWeight.bold,
             color: Theme.of(context).textTheme.bodyLarge?.color,
           ),
         ),
-        
+
         const SizedBox(height: 36),
-        
+
         // Stop Button
         GestureDetector(
           onTap: onStopRecording,
@@ -71,7 +71,7 @@ class RecordingView extends StatelessWidget {
                   color: Colors.redAccent.withValues(alpha: 0.4),
                   blurRadius: 12,
                   offset: const Offset(0, 6),
-                )
+                ),
               ],
             ),
             child: Row(
@@ -82,9 +82,9 @@ class RecordingView extends StatelessWidget {
                 Text(
                   "Stop",
                   style: TextStyle(
-                    color: Colors.white, 
-                    fontSize: 20, 
-                    fontWeight: FontWeight.bold
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],

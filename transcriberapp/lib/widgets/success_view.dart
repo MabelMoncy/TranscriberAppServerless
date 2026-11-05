@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'gradient_button.dart';
-import '../models/transcription_record.dart'; 
+import '../models/transcription_record.dart';
 
 class SuccessView extends StatelessWidget {
-  final List<TranscriptionRecord> results; 
+  final List<TranscriptionRecord> results;
   final VoidCallback onReset;
 
-  const SuccessView({
-    super.key,
-    required this.results,
-    required this.onReset,
-  });
+  const SuccessView({super.key, required this.results, required this.onReset});
 
   void _onShare(String text) {
     if (text.isNotEmpty) {
@@ -33,7 +29,7 @@ class SuccessView extends StatelessWidget {
           child: const Icon(Icons.check_rounded, color: Colors.green, size: 40),
         ),
         const SizedBox(height: 16),
-        
+
         // --- Count Text ---
         Text(
           "${results.length} Transcription${results.length > 1 ? 's' : ''} Complete",
@@ -41,9 +37,9 @@ class SuccessView extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             // Reduced 20 → 17 so the full text fits in one line on OPPO A31
-            fontSize: 17, 
-            fontWeight: FontWeight.bold, 
-            color: Theme.of(context).textTheme.bodyLarge?.color
+            fontSize: 17,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.bodyLarge?.color,
           ),
         ),
         const SizedBox(height: 16),
@@ -69,7 +65,9 @@ class SuccessView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).shadowColor, // <--- Dynamic Shadow
+                      color: Theme.of(
+                        context,
+                      ).shadowColor, // <--- Dynamic Shadow
                       blurRadius: 16,
                       offset: const Offset(0, 6),
                     ),
@@ -85,9 +83,11 @@ class SuccessView extends StatelessWidget {
                           child: Text(
                             record.fileName,
                             style: TextStyle(
-                              fontWeight: FontWeight.bold, 
+                              fontWeight: FontWeight.bold,
                               fontSize: 13,
-                              color: Theme.of(context).textTheme.bodyLarge?.color // <--- Dynamic
+                              color: Theme.of(
+                                context,
+                              ).textTheme.bodyLarge?.color, // <--- Dynamic
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -95,21 +95,27 @@ class SuccessView extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () => _onShare(record.transcription),
-                          icon: const Icon(Icons.share_rounded, size: 20, color: Color(0xFF448AFF)),
+                          icon: const Icon(
+                            Icons.share_rounded,
+                            size: 20,
+                            color: Color(0xFF448AFF),
+                          ),
                           constraints: const BoxConstraints(),
                           padding: EdgeInsets.zero,
                         ),
                       ],
                     ),
-                    
+
                     Divider(height: 20, color: Theme.of(context).dividerColor),
-                    
+
                     SelectableText(
                       record.transcription,
                       style: TextStyle(
-                        fontSize: 16, 
-                        height: 1.5, 
-                        color: Theme.of(context).textTheme.bodyLarge?.color // <--- Dynamic
+                        fontSize: 16,
+                        height: 1.5,
+                        color: Theme.of(
+                          context,
+                        ).textTheme.bodyLarge?.color, // <--- Dynamic
                       ),
                     ),
                   ],

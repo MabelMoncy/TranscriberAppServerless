@@ -10,9 +10,9 @@ import 'package:path/path.dart' as p;
 
 import '../models/app_state.dart';
 import '../services/gemini_service.dart';
-import '../services/theme_service.dart'; 
+import '../services/theme_service.dart';
 import '../widgets/initial_view.dart';
-import '../widgets/loading_view.dart'; 
+import '../widgets/loading_view.dart';
 import '../widgets/success_view.dart';
 import '../widgets/error_view.dart';
 import '../widgets/recording_view.dart';
@@ -33,13 +33,13 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
   final AudioRecorder _audioRecorder = AudioRecorder();
 
   AppState _appState = AppState.initial;
-  
+
   // Results list to show in SuccessView
   final List<TranscriptionRecord> _completedResults = [];
-  
+
   String? _errorMessage;
   String _statusMessage = "";
-  
+
   String? _recordingPath;
   Timer? _recordingTimer;
   int _recordingDuration = 0;
@@ -51,11 +51,15 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
   }
 
   void _initSharingListener() {
-    ReceiveSharingIntent.instance.getMediaStream().listen((List<SharedMediaFile> value) {
+    ReceiveSharingIntent.instance.getMediaStream().listen((
+      List<SharedMediaFile> value,
+    ) {
       if (value.isNotEmpty) _processFiles(value);
     });
-    
-    ReceiveSharingIntent.instance.getInitialMedia().then((List<SharedMediaFile> value) {
+
+    ReceiveSharingIntent.instance.getInitialMedia().then((
+      List<SharedMediaFile> value,
+    ) {
       if (value.isNotEmpty) _processFiles(value);
     });
   }
@@ -106,16 +110,17 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
         String fileName = file.path.split('/').last;
 
         setState(() {
-          _statusMessage = "Processing ${i + 1} of ${audioFiles.length}...\n$fileName";
+          _statusMessage =
+              "Processing ${i + 1} of ${audioFiles.length}...\n$fileName";
         });
 
         // 1. Transcribe
         final transcription = await _geminiService.transcribeAudio(file);
-        
+
         // 2. Save Permanently
         final safeName = "${DateTime.now().millisecondsSinceEpoch}_$fileName";
         final permanentPath = await _saveAudioPermanently(file, safeName);
-        
+
         // 3. Create Record
         final record = TranscriptionRecord(
           fileName: fileName,
@@ -134,7 +139,6 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
         _appState = AppState.success;
         _statusMessage = "";
       });
-
     } catch (e) {
       debugPrint("Error processing files: $e");
       if (_completedResults.isNotEmpty) {
@@ -149,11 +153,11 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
     final appDir = await getApplicationDocumentsDirectory();
     final newPath = p.join(appDir.path, 'recordings', fileName);
     final savedFile = File(newPath);
-    
+
     if (!await savedFile.parent.exists()) {
       await savedFile.parent.create(recursive: true);
     }
-    
+
     await tempFile.copy(newPath);
     return newPath;
   }
@@ -169,17 +173,21 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
       final directory = await getTemporaryDirectory();
       final timestamp = DateTime.now().millisecondsSinceEpoch;
       _recordingPath = '${directory.path}/recording_$timestamp.m4a';
-      
+
       await _audioRecorder.start(
-        const RecordConfig(encoder: AudioEncoder.aacLc, bitRate: 128000, sampleRate: 44100),
+        const RecordConfig(
+          encoder: AudioEncoder.aacLc,
+          bitRate: 128000,
+          sampleRate: 44100,
+        ),
         path: _recordingPath!,
       );
-      
+
       setState(() {
         _appState = AppState.liveRecording;
         _recordingDuration = 0;
       });
-      
+
       _recordingTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
         setState(() => _recordingDuration++);
       });
@@ -223,7 +231,7 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor, 
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(
           'Audio Transcriber',
@@ -244,8 +252,8 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
           // Theme Toggle
           IconButton(
             icon: Icon(
-              Theme.of(context).brightness == Brightness.dark 
-                  ? Icons.light_mode_rounded 
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.light_mode_rounded
                   : Icons.dark_mode_rounded,
               color: Theme.of(context).iconTheme.color,
             ),
@@ -253,10 +261,16 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
               ThemeService.instance.toggleTheme();
             },
           ),
-          
+
           IconButton(
-            icon: Icon(Icons.history_rounded, color: Theme.of(context).iconTheme.color),
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const HistoryPage())),
+            icon: Icon(
+              Icons.history_rounded,
+              color: Theme.of(context).iconTheme.color,
+            ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HistoryPage()),
+            ),
           ),
           const SizedBox(width: 8),
         ],
@@ -276,30 +290,27 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
     switch (_appState) {
       case AppState.initial:
         return InitialView(onStartRecording: _startLiveRecording);
-        
+
       case AppState.transcribing:
       case AppState.liveTranscribing:
         return LoadingView(statusMessage: _statusMessage);
-        
+
       case AppState.success:
-        return SuccessView(
-          results: _completedResults,
-          onReset: _resetApp,
-        );
-        
+        return SuccessView(results: _completedResults, onReset: _resetApp);
+
       case AppState.error:
         return ErrorView(
           errorMessage: _errorMessage,
           isAccidental: false,
           onRetry: _resetApp,
         );
-        
+
       case AppState.liveRecording:
         return RecordingView(
           duration: _recordingDuration,
           onStopRecording: _stopLiveRecording,
         );
-        
+
       default:
         return Container();
     }

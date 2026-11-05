@@ -36,28 +36,32 @@ class InitialView extends StatelessWidget {
                 color: Theme.of(context).shadowColor,
                 blurRadius: 30,
                 spreadRadius: 10,
-              )
+              ),
             ],
           ),
           child: const Center(
-            child: Icon(Icons.mic_none_rounded, size: 70, color: Color(0xFF448AFF)),
+            child: Icon(
+              Icons.mic_none_rounded,
+              size: 70,
+              color: Color(0xFF448AFF),
+            ),
           ),
         ),
         const SizedBox(height: 20),
-        
+
         // Title
         Text(
           "Transcriber",
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 28, 
-            fontWeight: FontWeight.bold, 
-            color: Theme.of(context).textTheme.bodyLarge?.color
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).textTheme.bodyLarge?.color,
           ),
         ),
         const SizedBox(height: 10),
-        
+
         // Subtitle
         Text(
           "Record voice notes or share audio\nfiles from WhatsApp.",
@@ -65,14 +69,14 @@ class InitialView extends StatelessWidget {
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 16, 
+            fontSize: 16,
             color: Theme.of(context).textTheme.bodyMedium?.color,
-            height: 1.5
+            height: 1.5,
           ),
         ),
-        
+
         const SizedBox(height: 24),
-        
+
         GradientButton(
           text: "Start Recording",
           icon: Icons.mic_rounded,
@@ -83,23 +87,33 @@ class InitialView extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: _openWhatsApp,
-          icon: const Icon(Icons.chat_bubble_outline_rounded, color: Colors.green),
+          icon: const Icon(
+            Icons.chat_bubble_outline_rounded,
+            color: Colors.green,
+          ),
           label: const Text("Open WhatsApp"),
           style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             side: const BorderSide(color: Colors.green, width: 1.5),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
             foregroundColor: Colors.green,
-            textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            textStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
-        
+
         const SizedBox(height: 10),
         Text(
           "(Select audio in WhatsApp -> Share -> Transcriber)",
           style: TextStyle(
-            fontSize: 12, 
-            color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.7)
+            fontSize: 12,
+            color: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.color?.withValues(alpha: 0.7),
           ),
         ),
       ],
