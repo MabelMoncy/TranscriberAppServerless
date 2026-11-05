@@ -18,14 +18,31 @@ class GeminiService {
       throw Exception("API Key missing. Please restart the app and setup your key.");
     }
 
-    // Smart Mime Type
+    // Smart Mime Type & Audio Validation
+    final lowerPath = audioFile.path.toLowerCase();
     String? mimeType = lookupMimeType(audioFile.path);
-    if (audioFile.path.endsWith('.opus')) {
+
+    if (lowerPath.endsWith('.opus')) {
       mimeType = 'audio/ogg'; 
-    } else if (audioFile.path.endsWith('.m4a')) {
+    } else if (lowerPath.endsWith('.m4a')) {
       mimeType = 'audio/mp4'; 
+    } else if (lowerPath.endsWith('.mp3')) {
+      mimeType = 'audio/mp3';
+    } else if (lowerPath.endsWith('.wav')) {
+      mimeType = 'audio/wav';
+    } else if (lowerPath.endsWith('.ogg') || lowerPath.endsWith('.oga')) {
+      mimeType = 'audio/ogg';
+    } else if (lowerPath.endsWith('.aac')) {
+      mimeType = 'audio/aac';
+    } else if (lowerPath.endsWith('.flac')) {
+      mimeType = 'audio/flac';
     }
-    mimeType ??= 'audio/mp4'; 
+
+    if (mimeType == null || !mimeType.startsWith('audio/')) {
+      throw Exception(
+        "Invalid file type (${mimeType ?? 'unknown'}). Only audio files can be transcribed.",
+      );
+    } 
 
     final bytes = await audioFile.readAsBytes();
     

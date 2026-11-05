@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mime/mime.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -61,8 +62,37 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
     });
   }
 
+  static const Set<String> _supportedAudioExtensions = {
+    '.opus',
+    '.m4a',
+    '.mp3',
+    '.wav',
+    '.ogg',
+    '.oga',
+    '.aac',
+    '.flac',
+    '.amr',
+    '.wma',
+  };
+
+  bool _isAudioFile(String path) {
+    final ext = p.extension(path).toLowerCase();
+    if (_supportedAudioExtensions.contains(ext)) {
+      return true;
+    }
+    final mime = lookupMimeType(path);
+    return mime != null && mime.startsWith('audio/');
+  }
+
   // --- PROCESSING LOGIC ---
   Future<void> _processFiles(List<SharedMediaFile> files) async {
+    final audioFiles = files.where((f) => _isAudioFile(f.path)).toList();
+
+    if (audioFiles.isEmpty) {
+      _showError("Only audio files (.opus, .m4a, .mp3, etc.) are supported.");
+      return;
+    }
+
     setState(() {
       _completedResults.clear();
       _appState = AppState.transcribing;
@@ -73,12 +103,12 @@ class _AudioTranscriberPageState extends State<AudioTranscriberPage> {
         throw Exception("No Internet Connection");
       }
 
-      for (int i = 0; i < files.length; i++) {
-        File file = File(files[i].path);
+      for (int i = 0; i < audioFiles.length; i++) {
+        File file = File(audioFiles[i].path);
         String fileName = file.path.split('/').last;
 
         setState(() {
-          _statusMessage = "Processing ${i + 1} of ${files.length}...\n$fileName";
+          _statusMessage = "Processing ${i + 1} of ${audioFiles.length}...\n$fileName";
         });
 
         // 1. Transcribe
