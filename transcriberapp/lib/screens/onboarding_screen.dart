@@ -17,10 +17,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future<void> _submitKey() async {
     final key = _keyController.text.trim();
-    if (key.length < 10 || !key.startsWith("AIza")) {
+    if (key.isEmpty || key.length < 10) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Invalid Key. It must start with 'AIza'"), 
+          content: Text("Please enter a valid Gemini API Key"), 
           backgroundColor: Colors.redAccent
         ),
       );
@@ -183,7 +183,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 style: TextStyle(color: textColor),
                 decoration: InputDecoration(
                   labelText: "Paste API Key Here",
-                  hintText: "AIza...",
+                  hintText: "Paste your Gemini API key",
                   hintStyle: TextStyle(color: isDark ? Colors.grey.shade600 : Colors.grey.shade400),
                   labelStyle: const TextStyle(color: Colors.blueAccent),
                   prefixIcon: const Icon(Icons.vpn_key, color: Colors.blueAccent),
