@@ -29,11 +29,12 @@ class _HistoryPageState extends State<HistoryPage> {
     super.initState();
     _refreshHistory();
     _audioPlayer.onPlayerComplete.listen((event) {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _playingIndex = null;
           _isPlaying = false;
         });
+      }
     });
   }
 
