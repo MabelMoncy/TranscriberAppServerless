@@ -31,12 +31,12 @@ class _SplashScreenState extends State<SplashScreen> {
     // 3. Navigate
     if (apiKey != null && apiKey.isNotEmpty) {
       Navigator.pushReplacement(
-        context, 
+        context,
         MaterialPageRoute(builder: (context) => const AudioTranscriberPage()),
       );
     } else {
       Navigator.pushReplacement(
-        context, 
+        context,
         MaterialPageRoute(builder: (context) => const OnboardingScreen()),
       );
     }
@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Dynamic Background
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor, 
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // --- App Name ---
             Text(
               "Audio Transcriber",
@@ -73,15 +73,15 @@ class _SplashScreenState extends State<SplashScreen> {
               style: TextStyle(
                 // Reduced from 32 → 24 so it renders in a single tight line
                 // on OPPO A31's 720px-wide viewport.
-                fontSize: 24, 
-                fontWeight: FontWeight.bold, 
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
                 color: Theme.of(context).textTheme.bodyLarge?.color,
                 letterSpacing: 0.5,
               ),
             ),
-            
+
             const SizedBox(height: 50),
-            
+
             // --- Loader ---
             const CircularProgressIndicator(color: Colors.blueAccent),
           ],

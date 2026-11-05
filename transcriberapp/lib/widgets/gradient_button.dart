@@ -7,9 +7,9 @@ class GradientButton extends StatelessWidget {
   final bool isLoading;
 
   const GradientButton({
-    super.key, 
-    required this.text, 
-    required this.icon, 
+    super.key,
+    required this.text,
+    required this.icon,
     required this.onPressed,
     this.isLoading = false,
   });
@@ -20,14 +20,14 @@ class GradientButton extends StatelessWidget {
       decoration: BoxDecoration(
         // The "Electric Blue -> Cyan" Gradient from your image
         gradient: const LinearGradient(
-          colors: [Color(0xFF448AFF), Color(0xFF00BCD4)], 
+          colors: [Color(0xFF448AFF), Color(0xFF00BCD4)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF448AFF).withOpacity(0.4),
+            color: const Color(0xFF448AFF).withValues(alpha: 0.4),
             blurRadius: 12,
             offset: const Offset(0, 6),
           ),
@@ -44,10 +44,14 @@ class GradientButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (isLoading) 
+                if (isLoading)
                   const SizedBox(
-                    width: 24, height: 24,
-                    child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
+                    ),
                   )
                 else ...[
                   Icon(icon, color: Colors.white, size: 24),

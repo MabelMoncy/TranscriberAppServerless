@@ -5,10 +5,10 @@ class RecordingView extends StatelessWidget {
   final VoidCallback onStopRecording;
 
   const RecordingView({
-    Key? key,
+    super.key,
     required this.duration,
     required this.onStopRecording,
-  }) : super(key: key);
+  });
 
   String _formatDuration(int seconds) {
     final minutes = (seconds ~/ 60).toString().padLeft(2, '0');
@@ -26,7 +26,7 @@ class RecordingView extends StatelessWidget {
           height: 120,
           width: 120,
           decoration: BoxDecoration(
-            color: Colors.redAccent.withOpacity(0.1),
+            color: Colors.redAccent.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
           child: const Center(
@@ -34,30 +34,30 @@ class RecordingView extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 28),
-        
+
         const Text(
           "Recording...",
           style: TextStyle(
-            fontSize: 20, 
+            fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Colors.redAccent 
+            color: Colors.redAccent,
           ),
         ),
         const SizedBox(height: 10),
-        
+
         // --- TIMER (Dynamic Color) ---
         Text(
           _formatDuration(duration),
           style: TextStyle(
             // Reduced from 48 → 36 to fit proportionally on OPPO A31
-            fontSize: 36, 
+            fontSize: 36,
             fontWeight: FontWeight.bold,
             color: Theme.of(context).textTheme.bodyLarge?.color,
           ),
         ),
-        
+
         const SizedBox(height: 36),
-        
+
         // Stop Button
         GestureDetector(
           onTap: onStopRecording,
@@ -68,10 +68,10 @@ class RecordingView extends StatelessWidget {
               borderRadius: BorderRadius.circular(40),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.redAccent.withOpacity(0.4),
+                  color: Colors.redAccent.withValues(alpha: 0.4),
                   blurRadius: 12,
                   offset: const Offset(0, 6),
-                )
+                ),
               ],
             ),
             child: Row(
@@ -82,9 +82,9 @@ class RecordingView extends StatelessWidget {
                 Text(
                   "Stop",
                   style: TextStyle(
-                    color: Colors.white, 
-                    fontSize: 20, 
-                    fontWeight: FontWeight.bold
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],

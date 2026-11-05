@@ -6,5 +6,5 @@ enum AppState {
   success,
   error,
   liveRecording,
-  liveTranscribing
+  liveTranscribing,
 }
