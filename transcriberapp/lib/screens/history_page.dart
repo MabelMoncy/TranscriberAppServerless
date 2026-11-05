@@ -7,7 +7,7 @@ import '../models/transcription_record.dart';
 import '../services/database_service.dart';
 
 class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+  const HistoryPage({super.key});
 
   @override
   State<HistoryPage> createState() => _HistoryPageState();
@@ -87,7 +87,7 @@ class _HistoryPageState extends State<HistoryPage> {
             children: [
               Container(
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: Colors.red.withOpacity(0.1), shape: BoxShape.circle),
+                decoration: BoxDecoration(color: Colors.red.withValues(alpha: 0.1), shape: BoxShape.circle),
                 child: const Icon(Icons.delete_forever_rounded, color: Colors.red, size: 40),
               ),
               const SizedBox(height: 20),
@@ -306,7 +306,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   decoration: BoxDecoration(
-                    color: isSelected ? Colors.blue.withOpacity(0.1) : Theme.of(context).cardColor,
+                    color: isSelected ? Colors.blue.withValues(alpha: 0.1) : Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(20),
                     border: isSelected ? Border.all(color: Colors.blueAccent, width: 2) : null,
                     boxShadow: [
@@ -349,7 +349,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                         subtitle: Text(
                           DateFormat.yMMMd().format(record.dateCreated), 
-                          style: TextStyle(fontSize: 12, color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.7))
+                          style: TextStyle(fontSize: 12, color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.7))
                         ),
                         trailing: _isSelectionMode 
                           ? Icon(isSelected ? Icons.check_circle : Icons.circle_outlined, color: isSelected ? Colors.blueAccent : Colors.grey)
@@ -367,7 +367,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Divider(color: Theme.of(context).dividerColor.withOpacity(0.1)),
+                                Divider(color: Theme.of(context).dividerColor.withValues(alpha: 0.1)),
                                 const SizedBox(height: 8),
                                 Text(
                                   record.transcription,
@@ -376,7 +376,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   style: TextStyle(
                                     fontSize: 14, 
                                     // Use body color instead of fixed grey so it works in dark mode
-                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8), 
+                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withValues(alpha: 0.8), 
                                     height: 1.5
                                   ),
                                 ),

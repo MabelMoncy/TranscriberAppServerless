@@ -5,10 +5,10 @@ class FileSharedView extends StatelessWidget {
   final VoidCallback onStartTranscription;
 
   const FileSharedView({
-    Key? key,
+    super.key,
     required this.fileName,
     required this.onStartTranscription,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

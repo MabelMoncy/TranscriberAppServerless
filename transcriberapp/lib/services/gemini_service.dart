@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:mime/mime.dart'; 
 import 'api_key_manager.dart';
@@ -56,28 +57,28 @@ class GeminiService {
 
     // Fallback System
     try {
-      print("🚀 Level 1: $_primaryModel");
+      debugPrint("🚀 Level 1: $_primaryModel");
       return await _tryTranscribe(apiKey, _primaryModel, content);
     } catch (e) {
-      print("⚠️ $_primaryModel Failed: $e");
+      debugPrint("⚠️ $_primaryModel Failed: $e");
       // Backoff: If quota/rate-limit error, give the API a 2-second
       // breathing window before hammering the next tier.
       final isQuotaError = e.toString().contains("Quota exceeded") ||
           e.toString().contains("429");
       if (isQuotaError) {
-        print("⏳ Quota hit — waiting 2s before Level 2...");
+        debugPrint("⏳ Quota hit — waiting 2s before Level 2...");
         await Future.delayed(const Duration(seconds: 2));
       }
       try {
-        print("⚡ Level 2: $_secondaryModel");
+        debugPrint("⚡ Level 2: $_secondaryModel");
         return await _tryTranscribe(apiKey, _secondaryModel, content);
       } catch (e2) {
-        print("⚠️ $_secondaryModel Failed: $e2");
+        debugPrint("⚠️ $_secondaryModel Failed: $e2");
         try {
-          print("🛡️ Level 3: $_tertiaryModel");
+          debugPrint("🛡️ Level 3: $_tertiaryModel");
           return await _tryTranscribe(apiKey, _tertiaryModel, content);
         } catch (e3) {
-          print("⚠️ $_tertiaryModel Failed: $e3");
+          debugPrint("⚠️ $_tertiaryModel Failed: $e3");
           throw Exception("Transcription failed. Please check internet/key.");
         }
       }
