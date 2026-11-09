@@ -22,7 +22,7 @@ dependencies:
       url: https://github.com/KasemJaffer/receive_sharing_intent
       ref: 2cea396843cd3ab1b5ec4334be4233864637874e
 
-  permission_handler: ^12.0.3
+  permission_handler: ^13.0.2
   path_provider: ^2.1.6
   record: ^6.2.1
   sqflite: ^2.4.5
