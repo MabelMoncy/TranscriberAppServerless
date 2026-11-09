@@ -24,7 +24,7 @@ dependencies:
 
   permission_handler: ^12.0.3
   path_provider: ^2.1.6
-  record: ^6.2.1
+  record: ^7.1.2
   sqflite: ^2.4.5
   path: ^1.9.1
   http: ^1.6.0
